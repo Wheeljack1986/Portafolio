@@ -25,7 +25,18 @@ def process_form():
 def formulario():
     email= request.form.get("email")
     text= request.form.get("text")
-    return render_template("index.html", email = email, text = text)
+    with open('form.txt', 'a',) as f:
+        f.write("Tu email: " + email + '\n')
+        f.write("Tu comentario: " + text + '\n')
+    # Puedes guardar tus datos o enviarlos por correo electrónico
+    return render_template('form_result.html', 
+                           # Coloque aquí las variables
+                           email=email,
+                           text=text
+                           )
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
+
